@@ -55,6 +55,36 @@ appEmpleado.get("/empleadoPorCedula", (req, res) => {
   }
 });
 
+
+appEmpleado.get("/empleadoPorCargo", (req, res) => {
+  const cargo = req.body.cargo_empleado;
+  if (cargo) {
+    conexion.query(
+      /*sql*/ `SELECT *
+      FROM empleados
+      WHERE cargo_empleado IN (
+        SELECT id_cargo
+        FROM cargo_empleados
+        WHERE nombre_cargo = "${cargo}"
+      )`,
+      req.body,
+      (err, data, fils) => {
+        if (err) {
+          console.log(err);
+        } else if (!data.length) {
+          res.send("Cargo no encontrado");
+        } else {
+          console.table(data);
+          res.send(data);
+        }
+      }
+    );
+  } else {
+    res.send("digite una Cargo");
+  }
+});
+
+
 appEmpleado.delete("/empleadoPorCedula", (req, res) => {
   const cedula = req.body.cedula_empleado;
 
