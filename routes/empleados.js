@@ -32,5 +32,23 @@ appEmpleado.get("/", (req, res) => {
     );
 })
 
+appEmpleado.get("/empleadoPorCedula", (req, res) => {
+    const cedula = req.body.cedula_empleado;
+    conexion.query(
+      /*sql*/ `SELECT *
+                FROM empleados
+                WHERE cedula_empleado = '${cedula}'`,
+      req.body,
+      (err, data, fils) => {
+        if(err){
+            console.log(err);
+        }else{
+            console.table(data);
+            res.send(data);
+        } 
+      }
+    );
+  });
+  
 
 export default  appEmpleado;
