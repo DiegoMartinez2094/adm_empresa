@@ -1,54 +1,84 @@
-import { Router } from "express"; 
-import conexion  from "../db/conexionDB.js";
+import { Router } from "express";
+import conexion from "../db/conexionDB.js";
 
-const appEmpleado = Router(); 
+const appEmpleado = Router();
 
-appEmpleado.post("/", (req, res) => { 
-    conexion.query(
-       `INSERT INTO empleados SET ?`,
-        req.body,
-        (err,data,fils)=>{
-            console.log(err);
-            console.table(data);
-            console.log(fils);
-            data.affectedRows+=200;
-            let result = req.body;
-            result.id= data.insertId;
-            res.status(data.affectedRows).send(result);
-        }
-    );
-})
+appEmpleado.post("/", (req, res) => {
+  conexion.query(`INSERT INTO empleados SET ?`, req.body, (err, data, fils) => {
+    if (err) {
+      console.log(err);
+    } else {
+      let result = req.body;
+      console.table(result);
+      data.affectedRows += 200;
+      res.status(data.affectedRows).send(result);
+    }
+  });
+});
 
 appEmpleado.get("/", (req, res) => {
-    conexion.query(
-        /*sql*/ `SELECT * FROM empleados`,
-        req.body,
-        (err,data,fils)=>{
-            console.log(err);
-            console.log(data);
-            console.log(fils);
-            res.send(data)
-        }
-    );
-})
+  conexion.query(
+    /*sql*/ `SELECT * FROM empleados`,
+    req.body,
+    (err, data, fils) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.table(data);
+        res.send(data);
+      }
+    }
+  );
+});
 
 appEmpleado.get("/empleadoPorCedula", (req, res) => {
-    const cedula = req.body.cedula_empleado;
+  const cedula = req.body.cedula_empleado;
+  if (cedula) {
     conexion.query(
       /*sql*/ `SELECT *
                 FROM empleados
                 WHERE cedula_empleado = '${cedula}'`,
       req.body,
       (err, data, fils) => {
-        if(err){
-            console.log(err);
-        }else{
-            console.table(data);
-            res.send(data);
-        } 
+        if (err) {
+          console.log(err);
+        } else if (!data.length) {
+          res.send("Cédula no encontrada");
+        } else {
+          console.table(data);
+          res.send(data);
+        }
       }
     );
-  });
-  
+  } else {
+    res.send("digite una cédula");
+  }
+});
 
-export default  appEmpleado;
+appEmpleado.delete("/empleadoPorCedula", (req, res) => {
+  const cedula = req.body.cedula_empleado;
+
+  conexion.query(
+    `SELECT * FROM empleados WHERE cedula_empleado = '${cedula}'`,
+    (err, data, fils) => {
+      if (err) {
+        res.status(500).send(err);
+      } else if (!data.length) {
+        res.status(404).send("Cédula no encontrada");
+      } else {
+        conexion.query(
+          `DELETE FROM empleados WHERE cedula_empleado = '${cedula}'`,
+          (err, data, fils) => {
+            if (err) {
+              res.status(500).send(err);
+            } else {
+              res.status(200).send("Empleado eliminado");
+            }
+          }
+        );
+      }
+    }
+  );
+});
+
+export default appEmpleado;
