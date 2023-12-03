@@ -54,6 +54,49 @@ ADD CONSTRAINT fk_b
 FOREIGN KEY (cedula_empleado)
 REFERENCES empleados (cedula_empleado);
 
+CREATE TABLE dispositivos(
+  id_dispositivo INT NOT NULL PRIMARY KEY,
+  nombre_dispositivo VARCHAR(255) NOT NULL,
+  proveedor_dipositivo VARCHAR(255) NOT NULL,
+  fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+
+CREATE TABLE avance_proyecto(
+  id_avance INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  proyecto_id INT NOT NULL,
+  dispositivo_id INT NOT NULL,
+  cantidad_dispositivos_por_instalar INT NOT NULL,
+  cantidad_dispositivos_instalados INT NOT NULL,
+  cedula_empleado INT NOT NULL,
+  fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+
+
+ALTER TABLE avance_proyecto
+ADD CONSTRAINT fk_c
+FOREIGN KEY (proyecto_id)
+REFERENCES proyectos (id_proyecto),
+ADD CONSTRAINT fk_d
+FOREIGN KEY (dispositivo_id)
+REFERENCES dispositivos (id_dispositivo),
+ADD CONSTRAINT fk_cedulaa_trabajador
+FOREIGN KEY (cedula_empleado)
+REFERENCES empleados (cedula_empleado);
+
+CREATE TABLE dispositivos_bodega(
+  dispositivo_id INT NOT NULL,
+  cantidad_dispositivos_bodega INT NOT NULL,
+  cedula_empleado INT NOT NULL,
+  fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+
+ALTER TABLE dispositivos_bodega
+ADD CONSTRAINT fk_dispositivooo_id
+FOREIGN KEY (dispositivo_id)
+REFERENCES dispositivos (id_dispositivo),
+ADD CONSTRAINT fk_cedula_empleadoo
+FOREIGN KEY (cedula_empleado)
+REFERENCES empleados (cedula_empleado)
 
 
 INSERT INTO cargo_empleados VALUES (1, "JEFE", "dirigir la empresa");
