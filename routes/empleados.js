@@ -23,7 +23,10 @@ appEmpleado.get("/", (req, res) => {
     (err, data, fils) => {
       if (err) {
         console.log(err);
-      } else {
+      } else if(!data.length){ 
+      res.send("no hay Empleados registrados")
+      } 
+      else{
         console.table(data);
         res.send(data);
       }
