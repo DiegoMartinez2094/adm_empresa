@@ -1,9 +1,10 @@
 import { Router } from "express";
 import conexion from "../db/conexionDB.js";
+import {limitConsult} from "../middleware/limite_consulta.js"
 
 const appEmpleado = Router();
 
-appEmpleado.post("/", (req, res) => {
+appEmpleado.post("/",limitConsult(), (req, res) => {
   conexion.query(`INSERT INTO empleados SET ?`, req.body, (err, data, fils) => {
     if (err) {
       console.log(err);
@@ -16,7 +17,9 @@ appEmpleado.post("/", (req, res) => {
   });
 });
 
-appEmpleado.get("/", (req, res) => {
+appEmpleado.get("/",limitConsult(), (req, res) => {
+  if(!req.rateLimit) return; 
+  console.log(req.rateLimit);
   conexion.query(
     /*sql*/ `SELECT * FROM empleados`,
     req.body,
@@ -34,7 +37,7 @@ appEmpleado.get("/", (req, res) => {
   );
 });
 
-appEmpleado.get("/empleadoPorCedula", (req, res) => {
+appEmpleado.get("/empleadoPorCedula",limitConsult(), (req, res) => {
   const cedula = req.body.cedula_empleado;
   if (cedula) {
     conexion.query(
@@ -59,7 +62,7 @@ appEmpleado.get("/empleadoPorCedula", (req, res) => {
 });
 
 
-appEmpleado.get("/empleadoPorCargo", (req, res) => {
+appEmpleado.get("/empleadoPorCargo",limitConsult(), (req, res) => {
   const cargo = req.body.cargo_empleado;
   if (cargo) {
     conexion.query(
@@ -88,7 +91,7 @@ appEmpleado.get("/empleadoPorCargo", (req, res) => {
 });
 
 
-appEmpleado.delete("/empleadoPorCedula", (req, res) => {
+appEmpleado.delete("/empleadoPorCedula",limitConsult(), (req, res) => {
   const cedula = req.body.cedula_empleado;
 
   conexion.query(
