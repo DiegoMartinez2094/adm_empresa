@@ -1,5 +1,6 @@
 -- Active: 1698620582911@@127.0.0.1@3306@adm_empresa
 CREATE DATABASE adm_empresa;
+
 USE adm_empresa;
 CREATE TABLE empleados (
   cedula_empleado int(20) NOT NULL PRIMARY KEY ,
@@ -7,6 +8,7 @@ CREATE TABLE empleados (
   fecha_nacimiento DATE NOT NULL,
   email_empleado varchar(20) NOT NULL,
   estado_empleado INT NOT NULL,
+  razon_estado_empleado VARCHAR(255),
   cargo_empleado INT NOT NULL,
   telefono_empleado VARCHAR(30) NOT NULL,
   fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -14,7 +16,7 @@ CREATE TABLE empleados (
 
 CREATE TABLE estado_empleados(
   id_estado_empleado INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  nombre_estado VARCHAR(25)
+  nombre_estado VARCHAR(25) NOT NULL
 )
 
 CREATE TABLE cargo_empleados(
@@ -98,11 +100,3 @@ ADD CONSTRAINT fk_cedula_empleadoo
 FOREIGN KEY (cedula_empleado)
 REFERENCES empleados (cedula_empleado)
 
-
-INSERT INTO cargo_empleados VALUES (1, "JEFE", "dirigir la empresa");
-INSERT INTO estado_empleados VALUES (1, "ACTIVO");
-
-INSERT INTO empleados (cedula_empleado, nombre_empleado,fecha_nacimiento,email_empleado,estado_empleado,cargo_empleado,telefono_empleado,fecha_creacion) VALUES
-  (1095821320,"Diego Fernando Martinez",'2000-01-01', "DIEGO@GMAIL.COM", 1, 1, "6317080", LOCALTIME());
-
-  
