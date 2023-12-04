@@ -1,10 +1,10 @@
 import { Router } from "express";
 import conexion from "../db/conexionDB.js";
-import {limitConsult} from "../middleware/limite_consulta.js"
+import { limitConsult } from "../middleware/limite_consulta.js";
 
 const appEmpleado = Router();
 
-appEmpleado.post("/",limitConsult(), (req, res) => {
+appEmpleado.post("/", limitConsult(), (req, res) => {
   conexion.query(`INSERT INTO empleados SET ?`, req.body, (err, data, fils) => {
     if (err) {
       console.log(err);
@@ -17,8 +17,8 @@ appEmpleado.post("/",limitConsult(), (req, res) => {
   });
 });
 
-appEmpleado.get("/",limitConsult(), (req, res) => {
-  if(!req.rateLimit) return; 
+appEmpleado.get("/", limitConsult(), (req, res) => {
+  if (!req.rateLimit) return;
   console.log(req.rateLimit);
   conexion.query(
     /*sql*/ `SELECT * FROM empleados`,
@@ -26,10 +26,9 @@ appEmpleado.get("/",limitConsult(), (req, res) => {
     (err, data, fils) => {
       if (err) {
         console.log(err);
-      } else if(!data.length){ 
-      res.send("no hay Empleados registrados")
-      } 
-      else{
+      } else if (!data.length) {
+        res.send("no hay Empleados registrados");
+      } else {
         console.table(data);
         res.send(data);
       }
@@ -37,11 +36,65 @@ appEmpleado.get("/",limitConsult(), (req, res) => {
   );
 });
 
-appEmpleado.get("/empleadoPorCedula",limitConsult(), (req, res) => {
+appEmpleado.get("/EstadoCargo", limitConsult(), (req, res) => {
+  if (!req.rateLimit) return;
+  console.log(req.rateLimit);
+  conexion.query(
+    /*sql*/ `SELECT
+  cedula_empleado,
+  nombre_empleado,
+  (
+    SELECT
+      nombre_cargo
+    FROM
+      cargo_empleados
+      WHERE
+      cargo_empleados.id_cargo = empleados.cargo_empleado
+  ) AS cargo_empleado,
+  fecha_nacimiento,
+  email_empleado,
+  (
+    SELECT
+      nombre_estado
+    FROM
+      estado_empleados
+    WHERE
+      estado_empleados.id_estado_empleado = empleados.estado_empleado
+  ) AS estado_empleado,
+   razon_estado_empleado
+FROM
+  empleados;
+
+`,
+    req.body,
+    (err, data, fils) => {
+      if (err) {
+        console.log(err);
+      } else if (!data.length) {
+        res.send("no hay Empleados registrados");
+      } else {
+        console.table(data);
+        res.send(data);
+      }
+    }
+  );
+});
+
+appEmpleado.get("/PorCedula", limitConsult(), (req, res) => {
   const cedula = req.body.cedula_empleado;
   if (cedula) {
     conexion.query(
-      /*sql*/ `SELECT *
+      /*sql*/ `SELECT 
+         cedula_empleado,
+         nombre_empleado,
+         (
+          SELECT
+            nombre_cargo
+          FROM
+            cargo_empleados
+            WHERE
+            cargo_empleados.id_cargo = empleados.cargo_empleado
+        ) AS cargo_empleado
                 FROM empleados
                 WHERE cedula_empleado = '${cedula}'`,
       req.body,
@@ -61,8 +114,7 @@ appEmpleado.get("/empleadoPorCedula",limitConsult(), (req, res) => {
   }
 });
 
-
-appEmpleado.get("/empleadoPorCargo",limitConsult(), (req, res) => {
+appEmpleado.get("/PorCargo", limitConsult(), (req, res) => {
   const cargo = req.body.cargo_empleado;
   if (cargo) {
     conexion.query(
@@ -90,8 +142,7 @@ appEmpleado.get("/empleadoPorCargo",limitConsult(), (req, res) => {
   }
 });
 
-
-appEmpleado.delete("/empleadoPorCedula",limitConsult(), (req, res) => {
+appEmpleado.delete("/PorCedula", limitConsult(), (req, res) => {
   const cedula = req.body.cedula_empleado;
 
   conexion.query(
