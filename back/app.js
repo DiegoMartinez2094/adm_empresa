@@ -1,9 +1,9 @@
 import express from "express";
 import dotenv from "dotenv"
 
-import appEmpleado from "./routes/empleados.js"
-import appEstado_empleados from "./routes/estado_empleados.js";
-import appCargo_empleados from "./routes/cargo_empleado.js";
+import appEmpleado from "../back/routes/empleados.js"
+import appEstado_empleados from "../back/routes/estado_empleados.js";
+import appCargo_empleados from "../back/routes/cargo_empleado.js";
 
 dotenv.config();
 const app = express();

@@ -2,7 +2,7 @@
   "name": "adm_empresa",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main":"back/app.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon --quiet app.js"
