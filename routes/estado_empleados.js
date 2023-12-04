@@ -1,6 +1,6 @@
 import { Router } from "express";
-import conexion from "../db/conexionDB.js";
-import { limitConsult } from "../middleware/limite_consulta.js";
+import conexion from "../back/db/conexionDB.js";
+import { limitConsult } from "../back/middleware/limite_consulta.js";
 
 const appEstado_empleados = Router();
 
