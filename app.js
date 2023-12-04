@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 
 import appEmpleado from "./routes/empleados.js"
 import appEstado_empleados from "./routes/estado_empleados.js";
+import appCargo_empleados from "./routes/cargo_empleado.js";
 
 dotenv.config();
 const app = express();
@@ -14,9 +15,6 @@ app.listen(config, ()=>{
     console.log(`http://${config.hostname}:${config.port}`);
 })
 
-// app.use("/",(req, res)=>{
-//     res.send("hola")
-// })
-
-app.use("/empleados",appEmpleado)
-app.use("/estadoEmpleados",appEstado_empleados)
+app.use("/empleados",appEmpleado);
+app.use("/estadoEmpleado",appEstado_empleados);
+app.use("/cargoEmpleado",appCargo_empleados);
