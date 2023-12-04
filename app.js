@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv"
 
 import appEmpleado from "./routes/empleados.js"
+import appEstado_empleados from "./routes/estado_empleados.js";
 
 dotenv.config();
 const app = express();
@@ -18,3 +19,4 @@ app.listen(config, ()=>{
 // })
 
 app.use("/empleados",appEmpleado)
+app.use("/estadoEmpleados",appEstado_empleados)
