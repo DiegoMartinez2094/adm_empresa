@@ -16,7 +16,7 @@ http://127.0.0.1:3535/empleados/PorCargo
 
 http://127.0.0.1:3535/empleados/PorCedula
 
-**DELETE** 
+**DELETE**
 
 http://127.0.0.1:3535/empleados/PorCedula
 
@@ -24,7 +24,7 @@ http://127.0.0.1:3535/empleados/PorCedula
 
 ##### EstadoEmpleados:
 
-**GET:** 
+**GET:**
 
 http://127.0.0.1:3535/estadoEmpleados
 
@@ -40,8 +40,32 @@ http://127.0.0.1:3535/estadoEmpleados/PorNombreEstado
 
 
 
-endpoints futuros: 
+##### CargoEmpleados:
+
+**GET:**
+
+http://127.0.0.1:3535/cargoEmpleado
+
+**POST:**
+
+http://127.0.0.1:3535/cargoEmpleado
+
+**DELETE:**
+
+http://127.0.0.1:3535/cargoEmpleado/nombreCargo
+
+
+
+---
+
+
+
+
+
+endpoints futuros:
 
 que trabajadores están en cada proyecto
 
 que funciones tengo y en qué proyecto estoy (para el empleado)
+
+arreglar lo de eliminar un empleado de un proyecto
