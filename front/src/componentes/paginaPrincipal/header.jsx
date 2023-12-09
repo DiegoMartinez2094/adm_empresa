@@ -1,11 +1,12 @@
 import React from "react";
 import admLogo from "../../assets/admLogo.png";
 import styles from "../../componentes/paginaPrincipal/header.css";
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light ">
+      <nav className="navbar navbar-expand-lg navbar-light ">
         <img className="admLogo" src={admLogo} />
         <button
           class="navbar-toggler"
@@ -44,6 +45,7 @@ const Header = () => {
                 Servicios
               </a>
             </li>
+            <Link to={"/login"}>
             <li class="nav-item">
               <a className="nav-link-hover" href="#">
                 <svg
@@ -52,7 +54,7 @@ const Header = () => {
                   height="65"
                   fill="currentColor"
                   class="bi bi-person-circle"
-                  viewBox="0 5 16 16"
+                  viewBox="0 0 16 16"
                 >
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                   <path
@@ -61,7 +63,8 @@ const Header = () => {
                   />
                 </svg>
               </a>
-            </li>
+             </li>
+            </Link>
 
           </ul>
         </div>
