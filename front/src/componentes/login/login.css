@@ -1,0 +1,28 @@
+
+.admLogo2{
+    max-width: 30rem;
+    margin-top: 30%;
+}
+
+.formLogin{
+    
+    margin-top: 10%;
+    padding-top: 10%;
+    width: 20rem;
+}
+
+.btn-primary{
+    margin-top: 1rem;
+    margin-left: 30%;
+    width: 8rem;
+    height: 2rem;
+    border-radius: 15px;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.crearCuenta,.soporteContacto{
+    text-decoration: none;
+    margin-top: 18px;
+    color: rgb(182, 5, 5) 14);
+}
