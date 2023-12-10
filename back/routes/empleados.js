@@ -1,6 +1,6 @@
 import { Router } from "express";
-import conexion from "../back/db/conexionDB.js";
-import { limitConsult } from "../back/middleware/limite_consulta.js";
+import conexion from "../db/conexionDB.js";
+import { limitConsult } from "../middleware/limite_consulta.js";
 
 const appEmpleado = Router();
 
@@ -106,6 +106,34 @@ appEmpleado.get("/PorCedula", limitConsult(), (req, res) => {
         } else {
           console.table(data);
           res.send(data);
+        }
+      }
+    );
+  } else {
+    res.send("digite una cédula");
+  }
+});
+
+appEmpleado.post("/ingreso", limitConsult(), (req, res) => {
+  const email = req.body.email_empleado;
+  const contraseña = req.body.contraseña_empleado;
+  if (email && contraseña) {
+    conexion.query(
+      /*sql*/ `SELECT 
+  email_empleado,
+  contraseña_empleado
+FROM empleados
+WHERE email_empleado = '${email}' AND contraseña_empleado = '${contraseña}'`,
+      req.body,
+      (err, data) => {
+        if (err) {
+          console.log(err);
+        } else if (!data.length) {
+          res.status(404).json({ message: "Usuario no encontrado" });
+        } else {
+          res
+            .status(200)
+            .json({ message: "Usuario autenticado correctamente" });
         }
       }
     );

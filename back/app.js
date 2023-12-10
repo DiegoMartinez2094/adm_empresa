@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv"
+import cors from 'cors';
 
 import appEmpleado from "../back/routes/empleados.js"
 import appEstado_empleados from "../back/routes/estado_empleados.js";
@@ -10,7 +11,7 @@ const app = express();
 app.use(express.json());
 
 let config = JSON.parse(process.env.MY_CONFIG);
-
+app.use(cors());
 app.listen(config, ()=>{
     console.log(`http://${config.hostname}:${config.port}`);
 })
