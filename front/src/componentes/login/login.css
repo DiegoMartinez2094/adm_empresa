@@ -9,11 +9,11 @@
     margin-top: 10%;
     padding-top: 10%;
     width: 20rem;
+    text-align: center;
 }
 
 .btn-primary{
     margin-top: 1rem;
-    margin-left: 30%;
     width: 8rem;
     height: 2rem;
     border-radius: 15px;
@@ -24,5 +24,9 @@
 .crearCuenta,.soporteContacto{
     text-decoration: none;
     margin-top: 18px;
-    color: rgb(182, 5, 5) 14);
+    
+}
+
+.linkPagPrincipal{
+    text-decoration: none;
 }
