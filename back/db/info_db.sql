@@ -5,7 +5,7 @@ INSERT INTO cargo_empleados VALUES
 (2, "GERENTE", "administrar la empresa"),
 (3, "DIRECTOR DE PROYECTOS", "Manejar contacto directo con el contacto del proyecto"),
 (4, "SUPERVISOR", "supervisar el trabajo de los empleados"),
-(5, "EMPLEADO", "realizar tareas asignadas")
+(5, "EMPLEADO", "realizar tareas asignadas"),
 (6, "PRACTICANTE", "realizar tareas asignadas por Empleados");
 
 INSERT INTO estado_empleados VALUES 
@@ -15,12 +15,12 @@ INSERT INTO estado_empleados VALUES
 
 
 INSERT INTO empleados VALUES
-(1095821320,"Diego Fernando Martinez",'1994-20-10', "DIEGO@GMAIL.COM", 1, "sin novedad", 1, "6317080", LOCALTIME()),
-(1095821321,"Juan Carlos Gomez",'1999-02-02', "JUAN@GMAIL.COM", 2, "jubilado", 2, "6317081", LOCALTIME()),
-(1095821322,"Maria Fernanda Perez",'1998-03-03', "MARIA@GMAIL.COM", 3, "fallas injustificadas", 3, "6317082", LOCALTIME()),
-(1095821323,"Luis Eduardo Sanchez",'1997-04-04', "LUIS@GMAIL.COM", 1, "en licencia", 4, "6317083", LOCALTIME()),
-(1095821324,"Ana Maria Rodriguez",'1996-05-05', "ANA@GMAIL.COM", 1, "sin novedad", 5, "6317084", LOCALTIME()),
-(1095821325,"David Alejandro Hernandez",'1995-06-06', "DAVID@GMAIL.COM", 1, "pasantias", 6, "6317085", LOCALTIME());
+(1095821320,"Diego Fernando Martinez",'1994-20-10', "DIEGO@GMAIL.COM", "123abc", 1, "sin novedad", 1, "6317080", LOCALTIME()),
+(1095821321,"Juan Carlos Gomez",'1999-02-02', "JUAN@GMAIL.COM","123abc", 2, "jubilado", 2, "6317081", LOCALTIME()),
+(1095821322,"Maria Fernanda Perez",'1998-03-03', "MARIA@GMAIL.COM","123abc", 3, "fallas injustificadas", 3, "6317082", LOCALTIME()),
+(1095821323,"Luis Eduardo Sanchez",'1997-04-04', "LUIS@GMAIL.COM","123abc", 1, "en licencia", 4, "6317083", LOCALTIME()),
+(1095821324,"Ana Maria Rodriguez",'1996-05-05', "ANA@GMAIL.COM","123abc", 1, "sin novedad", 5, "6317084", LOCALTIME()),
+(1095821325,"David Alejandro Hernandez",'1995-06-06', "DAVID@GMAIL.COM","123abc", 1, "pasantias", 6, "6317085", LOCALTIME());
 
 INSERT INTO proyectos VALUES
 (1,"Madelena", "ing Carlos", "Bogota cll 123", LOCALTIME(), "2023-12-2", "2024-30-1"),

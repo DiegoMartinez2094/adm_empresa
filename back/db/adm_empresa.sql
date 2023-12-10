@@ -7,6 +7,7 @@ CREATE TABLE empleados (
   nombre_empleado varchar(50) NOT NULL,
   fecha_nacimiento DATE NOT NULL,
   email_empleado varchar(20) NOT NULL,
+  contraseña_empleado varchar(20) NOT NULL,
   estado_empleado INT NOT NULL,
   razon_estado_empleado VARCHAR(255),
   cargo_empleado INT NOT NULL,
