@@ -5,30 +5,30 @@ import admLogo from "../../assets/admLogo.png";
 import Style from "../login/login.css";
 
 const Login = () => {
-  const [email_empleado, setEmail_empleado] = useState(""); // email_empleado es la variable que almacena, setEmail_empleado es la funcion que actualiza el estado de la variable
-  const [contraseña_empleado, setContraseña_empleado] = useState("");
+  const [email_usuario, setEmail_usuario] = useState(""); // email_usuario es la variable que almacena, setEmail_usuario es la funcion que actualiza el estado de la variable
+  const [contraseña_usuario, setContraseña_usuario] = useState("");
 
-  const onEmail_empleadoChange = (e) => {
-    setEmail_empleado(e.target.value);
+  const onEmail_usuarioChange = (e) => {
+    setEmail_usuario(e.target.value);
   };
   const onContraseña_empleadoChange = (e) => {
-    setContraseña_empleado(e.target.value);
+    setContraseña_usuario(e.target.value);
   };
 
   const onIngresoClick = async () => {
    
-    if (email_empleado.length < 1 || contraseña_empleado < 1) {
+    if (email_usuario.length < 1 || contraseña_usuario < 1) {
       document.getElementById('mensaje-error').innerText = 'Complete todos los datos';
     } else {
       try {
         const response = await fetch(
-          "http://127.0.0.1:3535/empleados/ingreso",
+          "http://127.0.0.1:3535/usuarios/ingreso",
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email_empleado, contraseña_empleado }),
+            body: JSON.stringify({ email_usuario, contraseña_usuario }),
           }
         );
         if (response.status === 200) {
@@ -66,9 +66,9 @@ const Login = () => {
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
                   placeholder="Correo Electrónico"
-                  name="email_empleado"
-                  onChange={onEmail_empleadoChange}
-                  value={email_empleado}
+                  name="email_usuario"
+                  onChange={onEmail_usuarioChange}
+                  value={email_usuario}
                 />
               </div>
               <div class="mb-3">
@@ -77,20 +77,20 @@ const Login = () => {
                   class="form-control"
                   id="exampleInputPassword1"
                   placeholder="contraseña"
-                  name="contraseña_empleado"
+                  name="contraseña_usuario"
                   onChange={onContraseña_empleadoChange}
-                  value={contraseña_empleado}
+                  value={contraseña_usuario}
                 />
                 <div id="mensaje-error"></div>
               </div>
               <button onClick={onIngresoClick} className="btn-primary">
                 Iniciar sesión
               </button>
-              <div class="mb-3">
-                <a>¿Nuevo en administración?</a>{" "}
-                <a href="" className="crearCuenta">
-                  Crear una cuenta
-                </a>
+              <div class="mb-3"> 
+              <Link to={"/crearCuenta"} >
+                  <a>Crear Cuenta</a>
+                </Link>
+                
               </div>
               <div class="mb-3">
                 <a>¿Necesitas ayuda? </a>{" "}

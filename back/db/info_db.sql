@@ -50,3 +50,5 @@ INSERT INTO proyectos_empleados VALUES
 (2, 1095821323);
 
 
+INSERT INTO usuarios VALUES
+(1095821321,"Fernando Martinez", "DIEGO1@GMAIL.COM", "123", "6317080", LOCALTIME());

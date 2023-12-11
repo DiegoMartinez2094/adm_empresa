@@ -2,9 +2,10 @@ import express from "express";
 import dotenv from "dotenv"
 import cors from 'cors';
 
-import appEmpleado from "../back/routes/empleados.js"
-import appEstado_empleados from "../back/routes/estado_empleados.js";
-import appCargo_empleados from "../back/routes/cargo_empleado.js";
+import appEmpleado from "./routes/empleados.js"
+import appEstado_empleados from "./routes/estado_empleados.js";
+import appCargo_empleados from "./routes/cargo_empleado.js";
+import appUsuarios from "./routes/usuarios.js";
 
 dotenv.config();
 const app = express();
@@ -19,3 +20,4 @@ app.listen(config, ()=>{
 app.use("/empleados",appEmpleado);
 app.use("/estadoEmpleado",appEstado_empleados);
 app.use("/cargoEmpleado",appCargo_empleados);
+app.use("/usuarios",appUsuarios);

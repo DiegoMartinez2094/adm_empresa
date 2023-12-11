@@ -101,3 +101,11 @@ ADD CONSTRAINT fk_cedula_empleadoo
 FOREIGN KEY (cedula_empleado)
 REFERENCES empleados (cedula_empleado)
 
+CREATE TABLE usuarios (
+  cedula_usuario int(20) NOT NULL PRIMARY KEY ,
+  nombre_usuario varchar(50) NOT NULL,
+  email_usuario varchar(20) NOT NULL,
+  contraseña_usuario varchar(20) NOT NULL,
+  telefono_usuario VARCHAR(30) NOT NULL,
+  fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
