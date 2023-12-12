@@ -65,13 +65,16 @@ appUsuarios.get("/PorCedula", limitConsult(), (req, res) => {
 appUsuarios.post("/ingreso", limitConsult(), (req, res) => {
   const email = req.body.email_usuario;
   const contraseña = req.body.contraseña_usuario;
-  if (email && contraseña) {
+  if(!email  || !contraseña) {
+    res.status(400).json({message:"informacion invalida"})
+  }
+  else {
     conexion.query(
       /*sql*/ `SELECT 
-  email_usuario,
-  contraseña_usuario
-FROM usuarios
-WHERE email_usuario = '${email}' AND contraseña_usuario = '${contraseña}'`,
+   email_usuario,
+   contraseña_usuario
+   FROM usuarios
+   WHERE email_usuario = '${email}' AND contraseña_usuario = '${contraseña}'`,
       req.body,
       (err, data) => {
         if (err) {
@@ -79,15 +82,11 @@ WHERE email_usuario = '${email}' AND contraseña_usuario = '${contraseña}'`,
         } else if (!data.length) {
           res.status(404).json({ message: "Usuario no encontrado" });
         } else {
-          res
-            .status(200)
-            .json({ message: "Usuario autenticado correctamente" });
+          res.status(200).json({ message: "Usuario autenticado correctamente" });
         }
       }
     );
-  } else {
-    res.send("digite un usuario");
-  }
+  } 
 });
 
 appUsuarios.delete("/PorCedula", limitConsult(), (req, res) => {

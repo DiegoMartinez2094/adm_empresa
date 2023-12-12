@@ -16,10 +16,6 @@ const Login = () => {
   };
 
   const onIngresoClick = async () => {
-   
-    if (email_usuario.length < 1 || contraseña_usuario < 1) {
-      document.getElementById('mensaje-error').innerText = 'Complete todos los datos';
-    } else {
       try {
         const response = await fetch(
           "http://127.0.0.1:3535/usuarios/ingreso",
@@ -31,20 +27,19 @@ const Login = () => {
             body: JSON.stringify({ email_usuario, contraseña_usuario }),
           }
         );
-        if (response.status === 200) {
+        if(response.status === 400){
+          alert("complete todos los campos");
+        }
+        else if (response.status === 200) {
           console.log("Usuario ingresado correctamente");
           alert("BIENVENIDO");
-        } else if (response.status === 404) {
+        } else  {
           alert("usuario no encontrado");
-        } else {
-          const error = await response.json();
-          alert(error.message);
-          alert("credenciales incorrectas");
         }
       } catch (error) {
         console.error("Error al realizar la solicitud:", error);
       }
-    }
+    
   };
 
   return (
@@ -69,6 +64,7 @@ const Login = () => {
                   name="email_usuario"
                   onChange={onEmail_usuarioChange}
                   value={email_usuario}
+                  required
                 />
               </div>
               <div class="mb-3">
@@ -80,6 +76,7 @@ const Login = () => {
                   name="contraseña_usuario"
                   onChange={onContraseña_empleadoChange}
                   value={contraseña_usuario}
+                  required
                 />
                 <div id="mensaje-error"></div>
               </div>
