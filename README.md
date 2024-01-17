@@ -1,4 +1,4 @@
-# endpoints:
+# Backend endpoints:
 
 ##### Empleados:
 
@@ -38,8 +38,6 @@ http://127.0.0.1:3535/estadoEmpleados/PorNombreEstado
 
 ---
 
-
-
 ##### CargoEmpleados:
 
 **GET:**
@@ -54,13 +52,7 @@ http://127.0.0.1:3535/cargoEmpleado
 
 http://127.0.0.1:3535/cargoEmpleado/nombreCargo
 
-
-
 ---
-
-
-
-
 
 endpoints futuros:
 
@@ -69,3 +61,28 @@ que trabajadores están en cada proyecto
 que funciones tengo y en qué proyecto estoy (para el empleado)
 
 arreglar lo de eliminar un empleado de un proyecto
+
+
+
+# Frontend avance
+
+#### página principal:
+
+![1705506733882](image/README/1705506733882.png)
+
+#### login:
+
+![1705506794446](image/README/1705506794446.png)
+
+inicio con cuenta creada: 
+
+![1705507063196](image/README/1705507063196.png)
+
+inicio con cuenta no registrada: 
+
+![1705507095085](image/README/1705507095085.png)
+
+
+creación de usuario solo frontend:
+
+![1705507129246](image/README/1705507129246.png)
